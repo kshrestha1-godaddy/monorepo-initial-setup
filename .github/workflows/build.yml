@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
 jobs:
   build:
     name: Build the project
@@ -21,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Install Prisma
-        run : cd packages/db && npx prisma generate && cd ../..
+        run: cd packages/db && npx prisma generate && cd ../..
         
       - name: Run Build
         run: npm run build
